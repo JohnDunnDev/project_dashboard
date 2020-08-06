@@ -1,13 +1,306 @@
-body {
+/* D E F A U L T S  A N D  V A R I A B L E S */
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  padding: 0;
+  position: relative;
+
+  scrollbar-width: thin;
+}
+
+:root {
+  font-family: "Roboto", sans-serif;
+
+  --background-color: #25294a;
+  --tile-color: #202442;
+  --tile-shadow: inset 0px 10px 10px rgba(0, 0, 0, 0.2);
+  --txt-color: #505583;
+  --important-txt: #959bcd;
+  --header-txt: 1.875em;
+  --active-bar: rgba(255, 255, 255, 0.1);
+
+  --sidebar-width: 10.9375em;
+  --small-margin: 0.625em;
+  --medium-margin: 1.5625em;
+  --large-margin: 3.125em;
+
+  background: var(--background-color);
+  color: #ccc;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+#container {
+  width: 100%;
+  height: 100%;
+
+  background: var(--background-color);
+  color: #ccc;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* SCROLLBAR */
+
+*::-webkit-scrollbar,
+.visible-scrollbar,
+.invisible-scrollbar,
+.mostly-customized-scrollbar,
+.scroller {
+  width: 0.5em;
+  height: 80%;
+  border-radius: 6px;
+  background: var(--txt-color);
+  color: var(--important-txt);
+}
+
+*::--webkit-scrollbar-track {
+  color: var(--important-txt);
+}
+
+/* ACCOUNT NAV */
+
+.account-nav {
+  width: var(--sidebar-width);
+  height: 100px;
+  border-radius: 6px;
+  border: 2px solid #2b3056;
+}
+
+.username {
+  color: white;
+  text-decoration: none;
+  font-size: 1.25rem;
+  margin-top: var(--small-margin);
+  margin-left: var(--small-margin);
+}
+
+.username a {
+  color: white;
+  text-decoration: none;
+}
+
+.nav-icon {
+  background: none;
+  border: none;
+  margin: var(--small-margin);
+}
+
+.profile-pic {
+  height: 2.5rem;
+  margin-top: var(--small-margin);
+  margin-left: var(--small-margin);
+  border-radius: 6px;
+}
+
+.account-nav-links {
+  display: flex;
+}
+
+/* NAVIGATION */
+
+.navigation {
+  background: var(--tile-color);
+  width: var(--sidebar-width);
+  height: 13.75rem;
+  margin-top: var(--small-margin);
+  border-radius: 6px;
+
+  display: flex;
+  margin-top: 50px;
+}
+
+.nav-items {
+  list-style: none;
+  margin: var(--medium-margin) 0px 0px var(--small-margin);
+  width: 100%;
+  cursor: pointer;
+
+  position: relative;
+  z-index: 10;
+  color: var(--txt-color);
+  letter-spacing: 0.1rem;
+
+  display: flex;
+  height: 1.5rem;
+}
+
+.nav-items:hover {
+  transform: scale(1.025);
+}
+
+.nav-text {
+  margin-left: var(--small-margin);
+  line-height: 1.5rem;
+  vertical-align: middle;
+}
+
+.active-nav {
+  color: var(--important-txt);
+  transition: color 0.5s;
+}
+
+.active-nav:hover {
+  transform: scale(1);
+}
+
+.active-bar {
+  position: absolute;
+  background: var(--active-bar);
+  border-radius: 2px;
+  height: 1.75rem;
+  width: var(--sidebar-width);
+  z-index: 0;
+  transform: translateY(1.4375rem);
+  transition: transform 0.4s;
+}
+
+/* IMPORTANT TASKS */
+
+.important-tasks {
+  margin-top: var(--large-margin);
+  background: var(--tile-color);
+  width: var(--sidebar-width);
+  height: 31.5rem;
+  border-radius: 6px;
+}
+
+.important-header {
+  display: flex;
+  margin: var(--small-margin);
+  top: 0.625rem;
+  color: var(--important-txt);
+}
+
+.important-header p {
+  margin-left: 0.625rem;
+  letter-spacing: 0.1rem;
+}
+
+/* PROJECTS */
+
+.project-snapshot {
+  border-radius: 6px;
+  width: 69.6875em;
+  height: 28.125em;
+  display: flex;
+  background: var(--tile-color);
+  margin-top: var(--large-margin);
+}
+
+.project {
+  border-radius: 6px;
+  width: 32.5em;
+  height: 25em;
+  margin: var(--medium-margin);
+  padding: var(--medium-margin);
+}
+
+.project:nth-child(2) {
+  margin-left: 0px;
+}
+
+.project h2 {
+  font-size: var(--header-txt);
+}
+
+.project p {
+  margin-top: var(--small-margin);
+}
+
+/* TASKS */
+
+.upcoming-tasks {
+  width: 33.28125em;
+  height: 26.5625em;
+  margin-top: var(--medium-margin);
+  padding: var(--small-margin);
+  background: var(--tile-color);
+
+  overflow-y: scroll;
+}
+
+.heading-container {
+  margin: var(--small-margin);
+}
+
+.upcoming-tasks h2 {
+  font-size: 1.5em;
+}
+
+.task {
+  border-radius: 6px;
+  margin: var(--medium-margin) var(--small-margin) var(--medium-margin)
+    var(--small-margin);
+  padding: 0px var(--small-margin) 0px var(--small-margin);
+  max-width: 29em;
+}
+
+.task p {
+  display: inline-block;
+}
+
+.task-description {
+  color: #ccc;
+  margin-top: var(--small-margin);
+}
+
+.high-priority-task-description {
+  color: #eee;
+  margin-top: var(--small-margin);
+}
+
+.task span {
+  display: block;
+}
+
+.task-date {
+  margin: var(--small-margin) var(--small-margin) var(--small-margin) 0px;
+}
+
+/* SCHEDULE & CALENDAR */
+
+.schedule-snapshot {
+  width: 33.28125em;
+  height: 26.5625em;
+  margin-top: var(--medium-margin);
+  padding: var(--small-margin);
+  background: var(--tile-color);
+
+  overflow-y: scroll;
+}
+
+.schedule-snapshot h2 {
+  font-size: 1.5em;
+}
+
+
+
+/* GRADIENT CLASSES */
+
+.blue {
+  background: linear-gradient(180deg, #4373d7 0%, #2b3056 100%);
+}
+
+.purple {
+  background: linear-gradient(180deg, #8564dd 0%, #8564dd 0.01%, #2b3056 100%);
+}
+
+.pink {
+  background: linear-gradient(180deg, #64ddc0 0%, #dd6490 0.01%, #562b3a 100%);
+}
+
+.red {
+  background: linear-gradient(180deg, #dd6b64 0%, #dd6464 0.01%, #562b2b 100%);
 }
