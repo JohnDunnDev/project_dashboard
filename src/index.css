@@ -285,7 +285,30 @@
   font-size: 1.5em;
 }
 
+.schedule-item {
+  border: 2px solid var(--important-txt);
+  border-radius: 6px;
+  display: flex;
 
+  height: 4.6875em;
+  width: 29em;
+  margin-top: var(--medium-margin);
+}
+
+.schedule-item-date {
+  background: var(--important-txt);
+  color: var(--tile-color);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 6.25em;
+}
+
+.schedule-item-details {
+  color: var(--important-txt);
+  margin: var(--small-margin) 0px 0px var(--medium-margin);
+}
 
 /* GRADIENT CLASSES */
 
