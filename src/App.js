@@ -618,8 +618,8 @@ function ImportantTasks(props) {
     ));
 
   return (
-    <div className="important-tasks">
-      <div className="important-header">
+    <div className="function-bar">
+      <div className="function-bar-header">
         <svg
           width="24"
           height="22"
@@ -718,6 +718,44 @@ function ScheduleSnapshot(props) {
   );
 }
 
+function SideBar(props) {
+  return (
+    <div>
+      <AccountNav username={props.username} userPic={props.userPic} />
+      <Navigation changePage={props.changePage} />
+      <ImportantTasks tasks={props.tasks} />
+    </div>
+  )
+}
+
+function HomePage(props) {
+  return (
+    <div className="home-page">
+      <ProjectSnapshot projects={props.projects} tasks={props.tasks} />
+      <UpcomingTasks tasks={props.tasks} />
+      <ScheduleSnapshot items={props.items} />
+    </div>
+  )
+}
+
+function ProjectsPage(props) {
+  return (
+    <div className="projects-page">Projects page is under construction</div>
+  )
+}
+
+function TasksPage(props) {
+  return (
+    <div className="tasks-page">Tasks page is under construction</div>
+  )
+}
+
+function SchedulePage(props) {
+  return (
+    <div className="schedule-page">Schedule page is under construction</div>
+  )
+}
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -732,14 +770,21 @@ class App extends React.Component {
   }
 
   render() {
+    const currentPage = this.state.currentPage;
+    let page;
+    if (currentPage === "home") {
+      page = <HomePage projects={projectArr} tasks={taskArr} items={scheduleArr} />
+    } else if (currentPage === "projects") {
+      page = <ProjectsPage />
+    } else if (currentPage === "tasks") {
+      page = <TasksPage />
+    } else if (currentPage === "schedule") {
+      page = <SchedulePage />
+    }
     return (
       <div>
-        <AccountNav username={username} userPic={userPic} />
-        <Navigation changePage={this.setCurrentPage} />
-        <ProjectSnapshot projects={projectArr} tasks={taskArr} />
-        <ImportantTasks tasks={taskArr} />
-        <UpcomingTasks tasks={taskArr} />
-        <ScheduleSnapshot items={scheduleArr} />
+        <SideBar username={username} userPic={userPic} changePage={this.setCurrentPage} tasks={taskArr} />
+        {page}
       </div>
     );
   }
