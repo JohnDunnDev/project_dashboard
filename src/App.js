@@ -562,8 +562,7 @@ function Project(props) {
 }
 
 function ProjectSnapshot(props) {
-  const projects = props.projects;
-  const projectTiles = projects
+  const projectSnapshotTiles = props.projects
     .filter((project, ind) => {
       if (ind < 2) {
         return project;
@@ -580,7 +579,23 @@ function ProjectSnapshot(props) {
         tasks={props.tasks}
       />
     ));
-  return <div className="project-snapshot">{projectTiles}</div>;
+  return <div className="project-snapshot">{projectSnapshotTiles}</div>;
+}
+
+function ProjectMain(props) {
+  const projectTiles = props.projects
+    .map((project) => (
+      <Project
+        key={project.id}
+        id={project.id}
+        color={project.color}
+        title={project.title}
+        description={project.description}
+        endDate={project.endDate}
+        tasks={props.tasks}
+      />
+    ));
+  return <div className="project-main">{projectTiles}</div>;
 }
 
 /* TASKS */
@@ -720,7 +735,7 @@ function ScheduleSnapshot(props) {
 
 function SideBar(props) {
   return (
-    <div>
+    <div className="sidebar">
       <AccountNav username={props.username} userPic={props.userPic} />
       <Navigation changePage={props.changePage} />
       <ImportantTasks tasks={props.tasks} />
@@ -740,7 +755,7 @@ function HomePage(props) {
 
 function ProjectsPage(props) {
   return (
-    <div className="projects-page">Projects page is under construction</div>
+    <ProjectMain projects={props.projects} tasks={props.tasks} />
   )
 }
 
@@ -775,7 +790,7 @@ class App extends React.Component {
     if (currentPage === "home") {
       page = <HomePage projects={projectArr} tasks={taskArr} items={scheduleArr} />
     } else if (currentPage === "projects") {
-      page = <ProjectsPage />
+      page = <ProjectsPage projects={projectArr} tasks={taskArr} />
     } else if (currentPage === "tasks") {
       page = <TasksPage />
     } else if (currentPage === "schedule") {

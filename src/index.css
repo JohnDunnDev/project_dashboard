@@ -45,9 +45,10 @@
 
   display: grid;
   grid-template-columns: 14.0625em 75.9375em;
-  grid-template-rows: 100%;
-  grid-template-areas: "sidebar" "content";
+  grid-template-rows: 100vh;
+  grid-template-areas: "sidebar content";
 }
+
 /* SCROLLBAR */
 
 *::-webkit-scrollbar,
@@ -69,27 +70,31 @@
 /* PAGES */
 
 .home-page {
-  grid-area: "content";
+  grid-area: content;
 
   display: grid;
 }
 
 .projects-page {
-  grid-area: "content";
+  grid-area: content;
 
   display: grid;
 }
 
 .tasks-page {
-  grid-area: "content";
+  grid-area: content;
 
   display: grid;
 }
 
 .schedule-page {
-  grid-area: "content";
+  grid-area: content;
 
   display: grid;
+}
+
+.sidebar {
+  grid-area: sidebar;
 }
 
 /* ACCOUNT NAV */
@@ -99,8 +104,6 @@
   height: 100px;
   border-radius: 6px;
   border: 2px solid #2b3056;
-
-  grid-area: "sidebar";
 }
 
 .username {
@@ -139,7 +142,6 @@
   background: var(--tile-color);
   width: var(--sidebar-width);
   height: 13.75rem;
-  grid-area: "sidebar";
 
   margin-top: var(--small-margin);
   border-radius: 6px;
@@ -203,8 +205,6 @@
   width: var(--sidebar-width);
   height: 31.5rem;
   border-radius: 6px;
-
-  grid-area: "sidebar";
 }
 
 .function-bar-header {
@@ -221,13 +221,17 @@
 
 /* PROJECTS */
 
-.project-snapshot {
+.project-snapshot, .project-main {
   border-radius: 6px;
   width: 69.6875em;
   height: 28.125em;
   display: flex;
   background: var(--tile-color);
   margin-top: var(--large-margin);
+}
+
+.project-main {
+  height: 57.75em;
 }
 
 .project {
