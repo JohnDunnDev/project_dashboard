@@ -21,6 +21,7 @@
   --tile-shadow: inset 0px 10px 10px rgba(0, 0, 0, 0.2);
   --txt-color: #505583;
   --important-txt: #959bcd;
+  --btn-txt: #EEE;
   --header-txt: 1.875em;
   --active-bar: rgba(255, 255, 255, 0.1);
 
@@ -217,6 +218,18 @@
 .function-bar-header p {
   margin-left: 0.625rem;
   letter-spacing: 0.1rem;
+}
+
+.button {
+  background: var(--txt-color);
+  color: var(--btn-txt);
+  border: none;
+  border-radius: 6px;
+
+  width: 7.75em;
+  height: 2em;
+  margin: var(--medium-margin) 0px 0px var(--medium-margin);
+  font-weight: 700;
 }
 
 /* PROJECTS */

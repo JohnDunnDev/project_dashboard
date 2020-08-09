@@ -530,8 +530,6 @@ class Navigation extends React.Component {
   }
 }
 
-/*  H O M E  P A G E  */
-
 /* PROJECTS */
 
 function Project(props) {
@@ -596,6 +594,37 @@ function ProjectMain(props) {
       />
     ));
   return <div className="project-main">{projectTiles}</div>;
+}
+
+class ProjectFunctionBar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      id: "",
+      title: "",
+      description: "",
+      status: "open",
+      startDate: "dateObject",
+      ongoing: false,
+      endDate: "dateObject",
+      timeNeeded: 10,
+      priority: "medium",
+      color: "blue"
+    };
+  }
+
+  render() {
+    return (
+    <div className="function-bar">
+      <div className="function-bar-header">
+        <p>OPTIONS</p>
+      </div>
+      <Button label="New project" />
+      <Button label="Sort" />
+      <Button label="Filter" />
+    </div>
+    );
+  }
 }
 
 /* TASKS */
@@ -682,6 +711,37 @@ function UpcomingTasks(props) {
   );
 }
 
+class TaskFunctionBar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      id: "projectId-001",
+      projectId: "projectId",
+      title: "",
+      description: "",
+      status: "open",
+      startDate: "dateObject",
+      endDate: "dateObject",
+      timeNeeded: 1,
+      priority: "medium",
+      color: "blue"
+    };
+  }
+
+  render() {
+    return (
+    <div className="function-bar">
+      <div className="function-bar-header">
+        <p>OPTIONS</p>
+      </div>
+      <Button label="New task" />
+      <Button label="Sort" />
+      <Button label="Filter" />
+    </div>
+    );
+  }
+}
+
 /* SCHEDULE */
 
 function ScheduleItem(props) {
@@ -733,13 +793,49 @@ function ScheduleSnapshot(props) {
   );
 }
 
+class ScheduleFunctionBar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      id: "ddmmyyyy-001",
+      title: "",
+      description: "",
+      startDate: "dateObject",
+      endDate: "dateObject",
+      timeNeeded: 1
+    };
+  }
+
+  
+
+  render() {
+    return (
+    <div className="function-bar">
+      <div className="function-bar-header">
+        <p>OPTIONS</p>
+      </div>
+      <Button label="New item" />
+      <Button label="Day view" />
+      <Button label="Week view" />
+      <Button label="Month view" />
+    </div>
+    );
+  }
+}
+
 function SideBar(props) {
   return (
     <div className="sidebar">
       <AccountNav username={props.username} userPic={props.userPic} />
       <Navigation changePage={props.changePage} />
-      <ImportantTasks tasks={props.tasks} />
+      {props.functionBar}
     </div>
+  )
+}
+
+function Button(props) {
+  return (
+    <button className="button" onClick={props.function}>{props.label}</button>
   )
 }
 
@@ -787,18 +883,31 @@ class App extends React.Component {
   render() {
     const currentPage = this.state.currentPage;
     let page;
+    let functionBar
     if (currentPage === "home") {
       page = <HomePage projects={projectArr} tasks={taskArr} items={scheduleArr} />
+      functionBar = <ImportantTasks tasks={taskArr} />
     } else if (currentPage === "projects") {
       page = <ProjectsPage projects={projectArr} tasks={taskArr} />
+      functionBar = <ProjectFunctionBar />
     } else if (currentPage === "tasks") {
       page = <TasksPage />
+      functionBar = <TaskFunctionBar />
     } else if (currentPage === "schedule") {
       page = <SchedulePage />
+      functionBar = <ScheduleFunctionBar />
     }
     return (
       <div>
-        <SideBar username={username} userPic={userPic} changePage={this.setCurrentPage} tasks={taskArr} />
+        <SideBar
+          username={username}
+          userPic={userPic}
+          changePage={this.setCurrentPage}
+          functionBar={functionBar} 
+          tasks={currentPage === "home"
+          ? taskArr
+          : ""} 
+          />
         {page}
       </div>
     );
